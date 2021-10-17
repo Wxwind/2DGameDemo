@@ -11,21 +11,28 @@ public class CollDetection : MonoBehaviour
     [Header("碰撞盒偏移")]
     public Vector2 groundBoxOffset;
     public Vector2 groundBoxSize;
-    public Vector2 leftWallBoxOffset;   
+    public Vector2 leftWallBoxOffset;
     public Vector2 rightWallBoxOffset;
     public Vector2 lrWallBoxSize;
-    [ReadOnly]public bool OnGround { private set; get; }
-    [ReadOnly]public bool OnAir { get { return !OnGround; } }
-    [ReadOnly]public bool OnWall { private set; get; }
-    [ReadOnly]public bool OnLeftWall { private set; get; }
-    [ReadOnly]public bool OnRightWall { private set; get; }
+
+    [Header("状态信息")]
+    [ShowInInspector,ReadOnly] private bool onGround;
+    [ShowInInspector,ReadOnly] private bool onWall;
+    [ShowInInspector,ReadOnly] private bool onLeftWall;
+    [ShowInInspector,ReadOnly] private bool onRightWall;
+
+    public bool OnGround { get { return onGround; } }
+    public bool OnAir { get { return !onGround; } }
+    public bool OnWall { get { return onWall; } }
+    public bool OnLeftWall { get { return onLeftWall; } }
+    public bool OnRightWall { get { return onRightWall; } }
 
     private void Update()
     {
-        OnGround = Physics2D.OverlapBox((Vector2)transform.position + groundBoxOffset, groundBoxSize, 0, groundLayer);
-        OnLeftWall= Physics2D.OverlapBox((Vector2)transform.position + leftWallBoxOffset, lrWallBoxSize, 0, groundLayer);
-        OnRightWall= Physics2D.OverlapBox((Vector2)transform.position + rightWallBoxOffset, lrWallBoxSize, 0, groundLayer);
-        OnWall = OnLeftWall || OnRightWall;
+        onGround = Physics2D.OverlapBox((Vector2)transform.position + groundBoxOffset, groundBoxSize, 0, groundLayer);
+        onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftWallBoxOffset, lrWallBoxSize, 0, groundLayer);
+        onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightWallBoxOffset, lrWallBoxSize, 0, groundLayer);
+        onWall = OnLeftWall || OnRightWall;
     }
 
     private void OnDrawGizmos()

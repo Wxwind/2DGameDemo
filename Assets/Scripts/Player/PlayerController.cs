@@ -9,12 +9,16 @@ public class PlayerController : MonoBehaviour
     public float LRMoveSpeed;
     public float LRAirMoveSpeed;
     public float jumpSpeed;
-    public float doubleJumpSpeed;
+    public float airJumpSpeed;
+    public float wallSlideSpeend;
     [Space]
     [Header("能力控制")]
     public bool canJump = true;
     public bool canMove = true;
-    public bool canDoubleJump = true;
+
+    [Tooltip("空中的多段跳")]
+    public bool canAirJump = true;
+    public int maxAirJumpCount = 0;
     public bool canWallSliding = true;
     [Space]
     [LabelText("当前速度")]
@@ -26,34 +30,30 @@ public class PlayerController : MonoBehaviour
     [ReadOnly] public bool isDashing;
     [ReadOnly] public bool isWalking;
     [ReadOnly] public bool isWallSliding;
-    [ReadOnly] public int jumpCount;
+    [ReadOnly] public int nowairJumpCount;
 
     private int xInput;
-    private int maxJumpCount;
-    private int WallSlidefaceDir;
+    private int wallSlidefaceDir;
 
     private CollDetection collDetection;
     private PlayerAnim playerAnim;
     private Rigidbody2D rb;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         collDetection = GetComponent<CollDetection>();
         playerAnim = GetComponent<PlayerAnim>();
-        maxJumpCount = canDoubleJump ? 2 : (canJump ? 1 : 0);
-        jumpCount =maxJumpCount;
+        nowairJumpCount = canAirJump ? maxAirJumpCount : 0;
     }
 
     private void Update()
     {
         xInput = InputManager.instance.xInput;
-        if (collDetection.OnGround)
-        {
-            jumpCount = maxJumpCount;
-        }
-        LRMove();
         Jump();
+        LRMove();
         WallSlide();
+
     }
 
     private void LateUpdate()
@@ -90,25 +90,38 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump()
     {
-        if (!canJump || (jumpCount == 0)) return;
+        if (!canJump) return;
+        if (collDetection.OnGround)
+        {
+            nowairJumpCount = maxAirJumpCount;
+        }
+
         if (Input.GetKeyDown(InputManager.instance.jumpKey))
         {
             playerAnim.SetTrigger("Jump", true);
             if (isWallSliding)//滑墙跳
             {
-                rb.velocity = WallSlidefaceDir*new Vector2(jumpSpeed, jumpSpeed);//待修改
+                rb.velocity = wallSlidefaceDir * new Vector2(jumpSpeed, jumpSpeed);//待修改
                 StartCoroutine(StopMove());
             }
-            else //正常跳跃
+            else//正常跳跃
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                jumpCount--;
+                if (collDetection.OnGround)//地面跳跃
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                }
+                else if (nowairJumpCount > 0)//空中跳跃
+                {
+                    nowairJumpCount--;
+                    rb.velocity = new Vector2(rb.velocity.x, airJumpSpeed);
+                }
             }
+
         }
     }
     private void WallSlide()
     {
-        if (collDetection.OnGround)
+        if (!canWallSliding || collDetection.OnGround)
         {
             isWallSliding = false;
             return;
@@ -117,15 +130,13 @@ public class PlayerController : MonoBehaviour
             (collDetection.OnRightWall && Input.GetKey(InputManager.instance.rightKey)))
         {
             isWallSliding = true;
-
-            
-            
             if (collDetection.OnLeftWall)
             {
-                WallSlidefaceDir = 1;
+                wallSlidefaceDir = 1;
             }
-            else WallSlidefaceDir = -1;
-            playerAnim.Flip(WallSlidefaceDir);
+            else wallSlidefaceDir = -1;
+            playerAnim.Flip(wallSlidefaceDir);
+            rb.velocity = new Vector2(rb.velocity.x, wallSlideSpeend);
         }
         else isWallSliding = false;
     }

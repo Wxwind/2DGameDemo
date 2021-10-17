@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateAssetMenu(fileName = "DialogueGraph",menuName = "XNode Graph/DialogueGraph")]
-public class DialogueGraph : NodeGraph
+namespace DialogueGraph
 {
- 
+    [CreateAssetMenu(fileName = "DialogueGraph", menuName = "XNode Graph/DialogueGraph")]
+    public class DialogueGraph : NodeGraph
+    {
+
+    }
 }
