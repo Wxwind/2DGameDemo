@@ -16,6 +16,7 @@ public class Test : SerializedMonoBehaviour
     //public string m_string = "abc";
     //[Button("按钮", 30)]
     private Action onTest;
+    public AudioClip clip;
     private void Testbutton()
     {
         Debug.Log("!");
@@ -23,7 +24,9 @@ public class Test : SerializedMonoBehaviour
     }
     private void Start()
     {
-        
-       
+        clip = Resources.Load<AudioClip>("Audio/jump");
+
+        AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, 0));
+
     }
 }

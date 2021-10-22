@@ -5,14 +5,16 @@ using Sirenix.OdinInspector;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("基础参数")]
+    [Title("基础参数")]
     public float LRMoveSpeed;
     public float LRAirMoveSpeed;
     public float jumpSpeed;
     public float airJumpSpeed;
     public float wallSlideSpeend;
+
     [Space]
-    [Header("能力控制")]
+
+    [Title("能力控制")]
     public bool canJump = true;
     public bool canMove = true;
 
@@ -20,11 +22,11 @@ public class PlayerController : MonoBehaviour
     public bool canAirJump = true;
     public int maxAirJumpCount = 0;
     public bool canWallSliding = true;
-    [Space]
-    [LabelText("当前速度")]
-    [ReadOnly]
-    public Vector2 currentSpeed;
-    [Header("当前状态")]
+
+    [Space]  
+
+    [Title("当前状态")]
+    [LabelText("当前速度"), ReadOnly] public Vector2 currentSpeed;
     [ReadOnly] public bool isJumping;
     [ReadOnly] public bool isIdling;
     [ReadOnly] public bool isDashing;

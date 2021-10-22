@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioSourcePool : MonoBehaviour
+public class AudioSourcePool 
 {
-    public AudioMixer audioMixer;
+    
     private List<AudioSource> audioSources = new List<AudioSource>();
 
-    private void Awake()
+    public AudioSourcePool(GameObject gameObject,AudioMixerGroup group)
     {
-        var groups = audioMixer.FindMatchingGroups("Master");
-        foreach (var a in groups) Debug.Log(a.name);
         for (int i = 0; i < 10; i++)
         {
             var audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.outputAudioMixerGroup = groups[2];
+            audioSource.outputAudioMixerGroup = group;
             audioSources.Add(audioSource);
         }
     }
