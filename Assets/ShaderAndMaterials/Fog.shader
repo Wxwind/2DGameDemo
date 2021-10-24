@@ -2,9 +2,9 @@
 {
     Properties
     {
-        _MainTex("Main Text", 2D) = "white" {}
+        _MainTex("MainTex", 2D) = "white" {}
         _Color("Fog Color", color) = (1,1,1,1)
-        _FogPower("Fog 强度", Range(0,1)) = 0.5
+        _FogStrength("Fog 强度", Range(0,1)) = 0.5
         
     }
     SubShader
@@ -21,8 +21,7 @@
             #include "Lighting.cginc"
 
             sampler2D _MainTex;
-            sampler2D _FlashTex;
-            float _FogPower;
+            float _FogStrength;
             
 
             fixed4 _Color;
@@ -78,7 +77,7 @@
             {
                 fixed3 col_src = tex2D(_MainTex, i.uv).rgb;
                 float rd = fbm(i.uv+_Time.x);//噪声函数
-                fixed3 col_fog = _Color.rgb*rd*_FogPower;
+                fixed3 col_fog = _Color.rgb*rd*_FogStrength;
                 fixed3 col_out = lerp(col_src,col_fog,0.2);
 
                 return fixed4(col_out,1);

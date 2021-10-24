@@ -9,6 +9,7 @@ public class FogFeature : ScriptableRendererFeature
         public Material fogMaterial;
         public RenderPassEvent renderPassEvent;
         public string tag;
+        public FilterMode filterMode;
     }
 
     public Setting setting;
@@ -17,7 +18,7 @@ public class FogFeature : ScriptableRendererFeature
 
     public override void Create()
     {
-        m_FogRenderPass = new FogRenderPass(setting.renderPassEvent,setting.fogMaterial,setting.tag);
+        m_FogRenderPass = new FogRenderPass(setting.renderPassEvent,setting.fogMaterial,setting.tag,setting.filterMode);
     }
 
     // Here you can inject one or multiple render passes in the renderer.

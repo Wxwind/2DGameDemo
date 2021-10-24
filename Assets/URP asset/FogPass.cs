@@ -4,15 +4,17 @@ using UnityEngine.Rendering.Universal;
 
 class FogRenderPass : ScriptableRenderPass
 {
-    public string m_commandBufferTag;
-    public Material m_fogMaterial;
-    public RenderTargetIdentifier m_cameraColorIdentifier;
+    private string m_commandBufferTag;
+    private Material m_fogMaterial;
+    private RenderTargetIdentifier m_cameraColorIdentifier;
+    private FilterMode filterMode;
 
     private RenderTargetHandle m_temp;
-    public FogRenderPass(RenderPassEvent evt, Material material, string tag)
+    public FogRenderPass(RenderPassEvent evt, Material material, string tag,FilterMode filterMode)
     {
         renderPassEvent = evt;
         m_commandBufferTag = tag;
+        this.filterMode = filterMode;
         if (material == null)
         {
             Debug.LogWarningFormat("urp pp's Fog Material is missing,{0} wouldn't be executed", GetType().Name);
@@ -39,7 +41,7 @@ class FogRenderPass : ScriptableRenderPass
         }
         var cmd = CommandBufferPool.Get(m_commandBufferTag);
         RenderTextureDescriptor cameraTargetDescriptor = renderingData.cameraData.cameraTargetDescriptor;
-        cmd.GetTemporaryRT(m_temp.id, cameraTargetDescriptor);
+        cmd.GetTemporaryRT(m_temp.id, cameraTargetDescriptor,filterMode);
         cmd.Blit(m_cameraColorIdentifier, m_temp.Identifier(), m_fogMaterial);
         cmd.Blit(m_temp.Identifier(), m_cameraColorIdentifier);
         context.ExecuteCommandBuffer(cmd);
