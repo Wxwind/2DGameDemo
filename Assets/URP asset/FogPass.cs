@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 class FogRenderPass : ScriptableRenderPass
 {
-    private string m_commandBufferTag;
+    private string m_commandBufferTag;//用于在frame debugger中与其他标签区分
     private Material m_fogMaterial;
     private RenderTargetIdentifier m_cameraColorIdentifier;
     private FilterMode filterMode;
@@ -28,10 +28,6 @@ class FogRenderPass : ScriptableRenderPass
         this.m_cameraColorIdentifier = cameraColorTarget;
     }
 
-    public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
-    {
-    }
-
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
@@ -49,8 +45,4 @@ class FogRenderPass : ScriptableRenderPass
         cmd.ReleaseTemporaryRT(m_temp.id);
     }
 
-    /// Cleanup any allocated resources that were created during the execution of this render pass.
-    public override void FrameCleanup(CommandBuffer cmd)
-    {
-    }
 }

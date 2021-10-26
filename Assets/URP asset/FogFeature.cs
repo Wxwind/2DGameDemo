@@ -30,5 +30,3 @@ public class FogFeature : ScriptableRendererFeature
         renderer.EnqueuePass(m_FogRenderPass);
     }
 }
-
-

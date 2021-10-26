@@ -1,9 +1,10 @@
-﻿Shader "Custom/Blinnphong"{
+﻿Shader "Custom/Fog"{
     
     Properties{
-        _MainTex("MainTex", 2D) = "white" {}
-        _Color("Fog Color", color) = (1,1,1,1)
+        _MainTex("主纹理", 2D) = "white" {}
+        _Color("雾颜色", color) = (1,1,1,1)
         _FogPower("雾强度", Range(0,1)) = 0.5
+        _FogVisibility("雾密度/可见性", Range(0,1)) = 0.2
         _Octaves("分型次数",int) = 4
         _Frequency("采样频率",float) = 1.0
         _Amplitude("幅度",float) = 0.5
@@ -32,6 +33,7 @@
             float _Amplitude;
             float _Lacunarity;
             float _Gain;
+            float _FogVisibility;
             CBUFFER_END
             TEXTURE2D (_MainTex);
             SAMPLER(sampler_MainTex);
@@ -39,16 +41,19 @@
             
 
             struct a2v {
-                float4 positionOS : POSITION;
+                float4 positionOS : POSITION;              
                 float2 uv : TEXCOORD0;
             };
             struct v2f{
                 float4 positionCS : SV_POSITION;
+                float3 positionWS :TEXCOORD1;
                 float2 uv : TEXCOORD0;
             };
         
             float rand(float2 p){
-				return frac(sin(dot(p ,float2(12.9898,78.233))) * 43758.5453);
+                //http://www.iryoku.com/next-generation-post-processing-in-call-of-duty-advanced-warfare
+				//return frac(52.9829189f * frac(p.x * 0.06711056f+ p.y * 0.00583715f));
+                return frac(sin(dot(p ,float2(12.9898,78.233))) * 43758.5453);
 			}
 
 			float perlinNoise(float2 x)
@@ -87,6 +92,7 @@
             v2f vert(a2v v)
             {
                 v2f o;
+                o.positionWS = TransformObjectToWorld(v.positionOS.xyz);
                 o.positionCS = TransformObjectToHClip(v.positionOS.xyz);
                 o.uv= TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
@@ -96,10 +102,10 @@
             {
                 //float3 mainColor = tex2D(_MainTex,i.uv).rgb;
                 float3 mainColor = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.uv).rgb;
-                float noise = perlinNoise(i.uv+_Time.x);//噪声函数
+                float noise = fbm(i.uv+_Time.x);//噪声函数
                 float3 col_fog = _Color.rgb*noise*_FogPower;
-                float3 col_out = lerp(mainColor,col_fog,0.2);
-                return float4(col_out,0.5f);
+                float3 col_out = lerp(mainColor,col_fog,_FogVisibility);
+                return float4(col_out,1.0f);
             }           
             ENDHLSL
         }

@@ -18,7 +18,6 @@ public class FBMNoise : MonoBehaviour
 
     public float cellsize = 10;
 
-    public Sprite sprite;
     public Texture2D texture;
 
     private void Start()

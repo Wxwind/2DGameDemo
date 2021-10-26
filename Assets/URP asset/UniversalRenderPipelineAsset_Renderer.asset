@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df27d22210b362d4d94ec0493e9598ff, type: 3}
   m_Name: FogFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   setting:
     fogMaterial: {fileID: 2100000, guid: d04d76d0b30d40a43b1cc589513328c6, type: 2}
     renderPassEvent: 550
