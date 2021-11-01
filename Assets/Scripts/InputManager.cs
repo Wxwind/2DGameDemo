@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     [ReadOnly] public KeyCode leftKey;
     [ReadOnly] public KeyCode rightKey;
     [ReadOnly] public KeyCode attackKey;
+    [ReadOnly] public KeyCode abilityKey;
     [ReadOnly] public KeyCode jumpKey;
     [ReadOnly] public KeyCode dashKey;
     [ReadOnly] public int xInput=0;
@@ -34,18 +35,6 @@ public class InputManager : MonoBehaviour
       
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(leftKey))
-        {
-            xInput = -1; faceDir = -1;
-        }
-        else if (Input.GetKey(rightKey))
-        {
-            xInput = 1; faceDir = 1;
-        }
-        else xInput = 0;
-    }
 
     private void KeyInit()
     {
@@ -53,7 +42,8 @@ public class InputManager : MonoBehaviour
         downKey = KeyCode.S;
         leftKey = KeyCode.A;
         rightKey = KeyCode.D;
-        attackKey = KeyCode.K;
+        //attackKey = KeyCode.K;
+        abilityKey = KeyCode.K;
         jumpKey = KeyCode.J;
         dashKey = KeyCode.L;
     }

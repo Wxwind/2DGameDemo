@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-    public void ExitGame()
+    public void SaveAndExitGame()
     {
         Application.Quit();
     }

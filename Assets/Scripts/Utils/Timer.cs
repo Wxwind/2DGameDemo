@@ -4,29 +4,35 @@ using System;
 
 public class Timer
 {
-    private float time;
+    private readonly float time;
     private Action OnComplete;
-
     private float value;
 
     public bool IsRunning { get; private set; }
+    public bool IsFinished { get; private set; }
+
 
     /// <summary>
-    /// ctor
+    /// 
     /// </summary>
     /// <param name="time">计时器计时的时间</param>
     /// <param name="OnComplete">计时结束时的回调</param>
-    public Timer(float time,Action OnComplete=null)
+    public Timer(float time,Action OnComplete=null,bool active=false)
     {
         this.time = time;
-        this.OnComplete = OnComplete ?? this.OnComplete;
+        this.OnComplete = OnComplete;
         this.value = 0;
-        this.IsRunning = true;
+        this.IsRunning = active;
+    }
+
+    public void SetCallback(Action OnComplete)
+    {
+        this.OnComplete = OnComplete ?? this.OnComplete;
     }
 
     public void Tick(float dt)
     {
-        if (IsRunning == false)
+        if (!IsRunning|| IsFinished)
         {
             return;
         }
@@ -40,6 +46,14 @@ public class Timer
     public void End()
     {
         OnComplete?.Invoke();
-        this.IsRunning = false;
+        IsRunning = false;
+        IsFinished = true;
+    }
+
+    public void ResetAndRun()
+    {
+        value = 0;
+        IsRunning = true;
+        IsFinished = false;
     }
 }

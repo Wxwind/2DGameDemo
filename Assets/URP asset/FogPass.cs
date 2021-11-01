@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 class FogRenderPass : ScriptableRenderPass
 {
-    private string m_commandBufferTag;//用于在frame debugger中与其他标签区分
+    private string m_commandBufferTag;//用于在frame debugger中与其他标签区分SwitchableBase
     private Material m_fogMaterial;
     private RenderTargetIdentifier m_cameraColorIdentifier;
     private FilterMode filterMode;

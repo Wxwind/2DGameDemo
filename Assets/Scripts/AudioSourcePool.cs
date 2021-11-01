@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioSourcePool 
-{
-    
+{   
     private List<AudioSource> audioSources = new List<AudioSource>();
 
     public AudioSourcePool(GameObject gameObject,AudioMixerGroup group)

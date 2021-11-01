@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     public float LRAirMoveSpeed;
     public float jumpSpeed;
     public float airJumpSpeed;
-    public float wallSlideSpeend;
+    public float wallSlideSpeed;
+    [Tooltip("滑墙状态保持时间")]public float wallSlideHoldTime;
+    public float groundHoldJumpTime;
+    public float jumpNoReponseTime;
+
 
     [Space]
 
@@ -33,13 +37,25 @@ public class PlayerController : MonoBehaviour
     [ReadOnly] public bool isWalking;
     [ReadOnly] public bool isWallSliding;
     [ReadOnly] public int nowairJumpCount;
+    [ReadOnly] public int xInput = 0;
+    [ReadOnly] public int faceDir = 1;
 
-    private int xInput;
     private int wallSlidefaceDir;
 
     private CollDetection collDetection;
     private PlayerAnim playerAnim;
     private Rigidbody2D rb;
+    private Timer wallSlideHoldTimer;
+    /// <summary>
+    /// 0:待机状态
+    /// 1:地面跳跃前几帧不受加成状态
+    /// 2:地面跳跃后持续按住跳跃键获得跳跃加成
+    /// </summary>
+    /// 
+    private int groundHoldJumpState;
+    private Timer groundHoldJumpTimer;
+    private Timer jumpNoReponseTimer;
+    
 
     private void Awake()
     {
@@ -47,15 +63,29 @@ public class PlayerController : MonoBehaviour
         collDetection = GetComponent<CollDetection>();
         playerAnim = GetComponent<PlayerAnim>();
         nowairJumpCount = canAirJump ? maxAirJumpCount : 0;
+        wallSlideHoldTimer = new Timer(wallSlideHoldTime, () => isWallSliding = false);
+        groundHoldJumpTimer = new Timer(groundHoldJumpTime, () => groundHoldJumpState = 0);
+        jumpNoReponseTimer = new Timer(jumpNoReponseTime, () => groundHoldJumpState = 2);
+        groundHoldJumpState = 0;
     }
 
     private void Update()
     {
-        xInput = InputManager.instance.xInput;
-        Jump();
-        LRMove();
-        WallSlide();
+        wallSlideHoldTimer.Tick(Time.deltaTime);
 
+        if (Input.GetKey(InputManager.instance.leftKey))
+        {
+            xInput = -1; faceDir = -1;
+        }
+        else if (Input.GetKey(InputManager.instance.rightKey))
+        {
+            xInput = 1; faceDir = 1;
+        }
+        else xInput = 0;
+        WallSlide();
+        Jump();
+        LRMove();    
+        Abilitity();
     }
 
     private void LateUpdate()
@@ -81,13 +111,13 @@ public class PlayerController : MonoBehaviour
                 isWalking = true;
                 isIdling = false;
                 rb.velocity = new Vector2(xInput * LRMoveSpeed, rb.velocity.y);
-                playerAnim.Flip(InputManager.instance.faceDir);
+                playerAnim.Flip(faceDir);
             }
         }
         else//空中左右移动,且不处于“墙上滑落”状态
         {
             rb.velocity = new Vector2(xInput * LRAirMoveSpeed, rb.velocity.y);
-            playerAnim.Flip(InputManager.instance.faceDir);
+            playerAnim.Flip(faceDir);
         }
     }
     private void Jump()
@@ -103,23 +133,58 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetTrigger("Jump", true);
             if (isWallSliding)//滑墙跳
             {
-                rb.velocity = wallSlidefaceDir * new Vector2(jumpSpeed, jumpSpeed);//待修改
-                StartCoroutine(StopMove());
+                rb.velocity =  new Vector2(wallSlidefaceDir*jumpSpeed, jumpSpeed);//待修改
+                StartCoroutine(StopMove(0.1f));
+                AudioManager.instance.PlaySFXAudio("Jump");
+                isWallSliding = false;
             }
             else//正常跳跃
             {
                 if (collDetection.OnGround)//地面跳跃
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                    AudioManager.instance.PlaySFXAudio("Jump");
+                    groundHoldJumpState = 1;
+                    groundHoldJumpTimer.ResetAndRun();
+                    jumpNoReponseTimer.ResetAndRun();
                 }
                 else if (nowairJumpCount > 0)//空中跳跃
                 {
                     nowairJumpCount--;
                     rb.velocity = new Vector2(rb.velocity.x, airJumpSpeed);
+                    AudioManager.instance.PlaySFXAudio("Jump");
                 }
             }
 
         }
+
+        switch (groundHoldJumpState) 
+        {
+            case 1:
+                if(Input.GetKey(InputManager.instance.jumpKey))
+                {
+                    jumpNoReponseTimer.Tick(Time.deltaTime);
+                }
+                else groundHoldJumpState = 0;
+                break;
+
+            case 2:
+                if (Input.GetKey(InputManager.instance.jumpKey))
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(rb.velocity.y,jumpSpeed,1.0f));
+                    Debug.Log("holding");
+                    groundHoldJumpTimer.Tick(Time.deltaTime);
+                }
+                else groundHoldJumpState = 0;
+                break;
+
+            default:
+                break;
+        }
+
+
+        //地面大跳加成
+        
     }
     private void WallSlide()
     {
@@ -138,15 +203,24 @@ public class PlayerController : MonoBehaviour
             }
             else wallSlidefaceDir = -1;
             playerAnim.Flip(wallSlidefaceDir);
-            rb.velocity = new Vector2(rb.velocity.x, wallSlideSpeend);
+            rb.velocity = new Vector2(rb.velocity.x, wallSlideSpeed);
         }
-        else isWallSliding = false;
+        else {
+            wallSlideHoldTimer.ResetAndRun();
+        };
+    }
+    private void Abilitity()
+    {
+        if (Input.GetKeyDown(InputManager.instance.abilityKey))
+        {
+            SwitchAbilityManager.instance.SwitchToAnother();
+        }
     }
 
-    IEnumerator StopMove()
+    IEnumerator StopMove(float time)
     {
         canMove = false;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(time);
         canMove = true;
     }
 }
