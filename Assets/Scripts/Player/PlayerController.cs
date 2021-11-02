@@ -172,7 +172,6 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKey(InputManager.instance.jumpKey))
                 {
                     rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(rb.velocity.y,jumpSpeed,1.0f));
-                    Debug.Log("holding");
                     groundHoldJumpTimer.Tick(Time.deltaTime);
                 }
                 else groundHoldJumpState = 0;

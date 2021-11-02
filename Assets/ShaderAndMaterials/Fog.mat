@@ -61,9 +61,9 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FogFactory: 0.2
-    - _FogPower: 1
+    - _FogPower: 0.951
     - _FogStrength: 1
-    - _FogVisibility: 0.501
+    - _FogVisibility: 0.464
     - _Frequency: 1
     - _Gain: 0.5
     - _GlossMapScale: 0

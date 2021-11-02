@@ -124,7 +124,7 @@
             {
                 //float3 mainColor = tex2D(_MainTex,i.uv).rgb;
                 float3 mainColor = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.uv).rgb;
-                float noise = perlinNoise(i.uv*_NoiseUnitCount+_Time.x*float2(_SpeedX,_SpeedY));//噪声函数
+                float noise = fbm(i.uv*_NoiseUnitCount+_Time.x*float2(_SpeedX,_SpeedY));//噪声函数
                 float3 fogColor = _Color.rgb*noise*_FogPower;
                 float3 final = lerp(mainColor,fogColor,_FogVisibility);
                 return float4(final,1.0f);
