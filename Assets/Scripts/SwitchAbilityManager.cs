@@ -20,9 +20,8 @@ public class SwitchAbilityManager : MonoBehaviour
     }
 
     private void Start()
-    {
-        
-        currentState = SwitchState.fiction;
+    {      
+        currentState = SwitchState.reality;
         SwitchAllTo(currentState);
     }
 

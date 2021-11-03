@@ -207,6 +207,11 @@ public class PlayerController : MonoBehaviour
         else {
             wallSlideHoldTimer.ResetAndRun();
         };
+        if (!collDetection.OnWall)
+        {
+            isWallSliding = false;
+            wallSlideHoldTimer.Stop();
+        }
     }
     private void Abilitity()
     {

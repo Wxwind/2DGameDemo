@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
     {
         if (_audioDic.ContainsKey(audioname))
         {
-            SFXAudioPool.Play(_audioDic[audioname]);
+            //SFXAudioPool.Play(_audioDic[audioname]);
         }
         else Debug.LogError("can't find the SFXaudio name:  " + audioname);
     }

@@ -1,1 +1,0 @@
-{"sceneIndex":2,"switchstate":1}

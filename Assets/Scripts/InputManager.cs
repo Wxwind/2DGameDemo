@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
     {
         upKey = KeyCode.W;
         downKey = KeyCode.S;
-        leftKey = KeyCode.A;
+        leftKey = KeyCode.Z;
         rightKey = KeyCode.D;
         //attackKey = KeyCode.K;
         abilityKey = KeyCode.K;

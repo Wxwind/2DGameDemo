@@ -56,4 +56,9 @@ public class Timer
         IsRunning = true;
         IsFinished = false;
     }
+
+    public void Stop()
+    {
+        this.IsRunning = false;
+    }
 }
