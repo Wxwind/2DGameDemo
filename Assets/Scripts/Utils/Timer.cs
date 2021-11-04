@@ -61,4 +61,9 @@ public class Timer
     {
         this.IsRunning = false;
     }
+
+    public void Run()
+    {
+        this.IsRunning = true;
+    }
 }

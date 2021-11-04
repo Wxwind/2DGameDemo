@@ -7,14 +7,22 @@ public class PlayerHealth : MonoBehaviour
 {
     private Animator anim;
     public GameObject restartMenu;
+    public GameObject deathPrefab;
     private float waitForMenuTime;
+    private SpriteRenderer sr;
     private Timer menuTimer;
     // Start is called before the first frame update
     private void Awake()
     {
-        waitForMenuTime = 3.0f;
+        waitForMenuTime = 2.0f;
         anim = GetComponent<Animator>();
-        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));
+        sr = GetComponent<SpriteRenderer>();
+        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));    
+    }
+
+    private void Update()
+    {
+        menuTimer.Tick(Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,8 +35,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Death()
     {
-        anim.SetBool("Death", true);
+        deathPrefab.SetActive(true);
         AudioManager.instance.PlaySFXAudio("Death");
-        GetComponent<PlayerController>().enabled = false;
+        menuTimer.ResetAndRun();
+        sr.enabled = false;
     }
 }

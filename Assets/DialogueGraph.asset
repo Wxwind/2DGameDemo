@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Simple
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 72, y: -264}
+  position: {x: 56, y: -264}
   ports:
     keys:
     - nextDialog
-    - a
-    - b
     values:
     - _fieldName: nextDialog
       _node: {fileID: -6384522154692528437}
@@ -29,29 +27,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: a
-      _node: {fileID: -6384522154692528437}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: nextDialog
-        node: {fileID: -3377132505113854009}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: b
-      _node: {fileID: -6384522154692528437}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  a: 0
-  b: 0
+  charactor: {fileID: 0}
+  text: 
   nextDialog: 0
 --- !u!114 &-3377132505113854009
 MonoBehaviour:
@@ -66,45 +43,22 @@ MonoBehaviour:
   m_Name: Simple
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -344, y: -264}
+  position: {x: -408, y: -264}
   ports:
     keys:
-    - a
-    - b
     - nextDialog
     values:
-    - _fieldName: a
-      _node: {fileID: -3377132505113854009}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: b
-      _node: {fileID: -3377132505113854009}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
     - _fieldName: nextDialog
       _node: {fileID: -3377132505113854009}
       _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: a
-        node: {fileID: -6384522154692528437}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  a: 12
-  b: 2
+  charactor: {fileID: 0}
+  text: 
   nextDialog: 0
 --- !u!114 &11400000
 MonoBehaviour:

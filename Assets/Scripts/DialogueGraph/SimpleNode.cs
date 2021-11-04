@@ -1,25 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 using XNode;
 namespace DialogueGraph
 {
     [NodeWidth(400)]
-    [NodeTint(73, 236, 209)]//Node颜色
+    [NodeTint(200, 200, 200)]
     public class SimpleNode : Node
     {
-        [Input] public int a;
-        [Input] public int b;
-        [Output] public int nextDialog;
+        [Input(ShowBackingValue.Never)] public int lastDialog;
+        [PreviewField]public Sprite charactor;
         public string text;
-
+        [Output] public int nextDialog;
+        
         public override object GetValue(NodePort port)
         {
-            return GetSum();
-        }
-        public float GetSum()
-        {
-            return a + b;
+            return 5;
         }
 
     }

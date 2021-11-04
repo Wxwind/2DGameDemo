@@ -7,14 +7,14 @@ public class FloatPlatform_R : MonoBehaviour
     [SerializeField] private List<Transform> pointsList = new List<Transform>();
     public float moveSpeed;
     public float restTime;
-    private Rigidbody2D rg;
-    [SerializeField]private int index;
-    [SerializeField]private bool arrived;
+    public Transform player;
+    private int index;
+    private bool arrived;   
     private Timer timer;
     // Start is called before the first frame update
     private void Awake()
     {
-        rg = GetComponent<Rigidbody2D>();
+       
     }
     private void Start()
     {
@@ -45,4 +45,22 @@ public class FloatPlatform_R : MonoBehaviour
         else transform.position = Vector2.MoveTowards(transform.position, pointsList[index].position, moveSpeed * Time.deltaTime);
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        Debug.Log("enter");
+        if (other.gameObject.CompareTag("Player") && player.GetComponent<CollDetection>().OnGround)
+        {
+            player.transform.SetParent(transform);
+
+            Debug.Log("set");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        Debug.Log("exit");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player.transform.SetParent(null);
+        }
+    }
 }

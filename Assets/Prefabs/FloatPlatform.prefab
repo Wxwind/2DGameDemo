@@ -162,8 +162,7 @@ MonoBehaviour:
   - {fileID: 4489891430273526588}
   moveSpeed: 2
   restTime: 1
-  index: 0
-  arrived: 0
+  player: {fileID: 0}
 --- !u!50 &1652490989
 Rigidbody2D:
   serializedVersion: 4
