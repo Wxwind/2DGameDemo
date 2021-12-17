@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[SuppressMessage("ReSharper", "SuggestVarOrType_Elsewhere")]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -19,9 +19,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> _audioDic;
     private AudioSourcePool SFXAudioPool;
     private AudioSource BGMSudioSource;
-
-
-
+    
     private void Awake()
     {
         if (instance != null)
@@ -31,7 +29,7 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         instance = this;
-
+        
         AudioMixerGroup[] groups = audioMixer.FindMatchingGroups("Master");
         foreach (var a in groups) Debug.Log(a.name);
 
@@ -46,7 +44,7 @@ public class AudioManager : MonoBehaviour
         {
             _audioDic.Add(clip.name, clip);
         }
-
+        
     }
 
     public void PlaySFXAudio(string audioname)
@@ -70,6 +68,7 @@ public class AudioManager : MonoBehaviour
     }
 
     #region only uesd for ui
+
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
@@ -85,6 +84,7 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat("BGMVolume", volume);
         BGMVolumn = volume;
     }
+
     #endregion
 }
 

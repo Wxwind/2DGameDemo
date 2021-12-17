@@ -19,7 +19,7 @@ namespace XNode {
             }
         }
 
-        public IO direction { 
+        public IO direction {
             get { return _direction; }
             internal set { _direction = value; }
         }
@@ -394,7 +394,7 @@ namespace XNode {
         private class PortConnection {
             [SerializeField] public string fieldName;
             [SerializeField] public Node node;
-            public NodePort Port { get { return port != null ? port : port = GetPort(); } }
+            public NodePort Port { get { return port ?? (port = GetPort()); } }
 
             [NonSerialized] private NodePort port;
             /// <summary> Extra connection path points for organization </summary>

@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartCurrentScene()
     {
-        SceneManager.LoadScene(currentSceneIndex);
+        int nowscene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(nowscene);
     }
 
     public void CreateSaveData()

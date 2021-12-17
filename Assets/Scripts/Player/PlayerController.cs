@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+// ReSharper disable All
 
 public class PlayerController : MonoBehaviour
 {
@@ -158,6 +159,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        //小跳和大跳
         switch (groundHoldJumpState) 
         {
             case 1:
@@ -181,8 +183,6 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-
-        //地面大跳加成
         
     }
     private void WallSlide()

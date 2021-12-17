@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private Animator anim;
     public GameObject restartMenu;
     public GameObject deathPrefab;
     private float waitForMenuTime;
@@ -15,7 +11,6 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         waitForMenuTime = 2.0f;
-        anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));    
     }
@@ -35,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Death()
     {
+        GetComponent<PlayerController>().enabled = false;
         deathPrefab.SetActive(true);
         AudioManager.instance.PlaySFXAudio("Death");
         menuTimer.ResetAndRun();

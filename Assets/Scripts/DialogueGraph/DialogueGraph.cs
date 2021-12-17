@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XNode;
 
-namespace DialogueGraph
+namespace DialogueGraphEditor
 {
     [CreateAssetMenu(fileName = "DialogueGraph", menuName = "XNode Graph/DialogueGraph")]
     public class DialogueGraph : NodeGraph

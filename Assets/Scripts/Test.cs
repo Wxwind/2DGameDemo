@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using DialogueGraphEditor;
+using DG.Tweening;
 
-public class Test : SerializedMonoBehaviour
+public class Test : MonoBehaviour
 {
     //[PreviewField]
     //[LabelText("这是精灵")]
@@ -15,7 +17,10 @@ public class Test : SerializedMonoBehaviour
     //public int m_int;
     //public string m_string = "abc";
     //[Button("按钮", 30)]
+    public DialogueGraph graph;
 
-
-
+    private void Start()
+    {
+        DialogueGraphManeger.instance.LoadDialogGraph(graph);
+    }
 }

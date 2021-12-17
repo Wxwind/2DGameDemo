@@ -29,17 +29,19 @@ public class CollDetection : MonoBehaviour
 
     private void Update()
     {
-        onGround = Physics2D.OverlapBox((Vector2)transform.position + groundBoxOffset, groundBoxSize, 0, groundLayer);
-        onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftWallBoxOffset, lrWallBoxSize, 0, groundLayer);
-        onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightWallBoxOffset, lrWallBoxSize, 0, groundLayer);
+        Vector2 position = transform.position;
+        onGround = Physics2D.OverlapBox(position+ groundBoxOffset, groundBoxSize, 0, groundLayer);
+        onLeftWall = Physics2D.OverlapBox(position+ leftWallBoxOffset, lrWallBoxSize, 0, groundLayer);
+        onRightWall = Physics2D.OverlapBox(position+ rightWallBoxOffset, lrWallBoxSize, 0, groundLayer);
         onWall = OnLeftWall || OnRightWall;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube((Vector2)transform.position + groundBoxOffset, groundBoxSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + leftWallBoxOffset, lrWallBoxSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + rightWallBoxOffset, lrWallBoxSize);
+        Vector2 position = transform.position;
+        Gizmos.DrawWireCube(position + groundBoxOffset, groundBoxSize);
+        Gizmos.DrawWireCube(position + leftWallBoxOffset, lrWallBoxSize);
+        Gizmos.DrawWireCube(position + rightWallBoxOffset, lrWallBoxSize);
     }
 }

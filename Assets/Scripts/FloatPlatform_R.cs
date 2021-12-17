@@ -47,17 +47,13 @@ public class FloatPlatform_R : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("enter");
         if (other.gameObject.CompareTag("Player") && player.GetComponent<CollDetection>().OnGround)
         {
             player.transform.SetParent(transform);
-
-            Debug.Log("set");
         }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        Debug.Log("exit");
         if (other.gameObject.CompareTag("Player"))
         {
             player.transform.SetParent(null);

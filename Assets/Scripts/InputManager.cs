@@ -32,15 +32,13 @@ public class InputManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         KeyInit();
-      
     }
-
 
     private void KeyInit()
     {
-        upKey = KeyCode.W;
+        upKey = KeyCode.A;
         downKey = KeyCode.S;
-        leftKey = KeyCode.A;
+        leftKey = KeyCode.Z;
         rightKey = KeyCode.D;
         //attackKey = KeyCode.K;
         abilityKey = KeyCode.K;

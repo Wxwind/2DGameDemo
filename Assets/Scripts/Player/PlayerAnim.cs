@@ -29,11 +29,7 @@ public class PlayerAnim : MonoBehaviour
     
     public void Flip(int faceDir)
     {
-        if (faceDir == 1)
-        {
-            sr.flipX = false;
-        }
-        else sr.flipX = true;
+        sr.flipX = faceDir != 1;
     } 
 
     public void SetTrigger(string animTriggerName,bool trigger)

@@ -9,6 +9,7 @@ public class SwitchableObject:MonoBehaviour
     public SwitchState currentState;  
     public GameObject realityObject;
     public GameObject fictionObject;
+    public GameObject player;
 
     private void Start()
     {
@@ -18,13 +19,14 @@ public class SwitchableObject:MonoBehaviour
     public void SwitchTo(SwitchState state)
     {
         currentState = state;
-        if (state == SwitchState.reality)
-        {         
+        if (state == SwitchState.reality)//f to r
+        {
             realityObject.gameObject.SetActive(true);
             fictionObject.gameObject.SetActive(false);
         }
-        else
+        else//r to f
         {
+            player.transform.parent = null;
             realityObject.gameObject.SetActive(false);
             fictionObject.gameObject.SetActive(true);
         }
