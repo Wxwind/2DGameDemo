@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
 
 
     [Space]
+    
+    
+    [Title("射击")] 
+    public GameObject bullet;
+    public float bulletDuration;
 
     [Title("能力控制")]
     public bool canJump = true;
@@ -87,8 +92,16 @@ public class PlayerController : MonoBehaviour
         Jump();
         LRMove();    
         Abilitity();
+        Shot();
     }
 
+    private void Shot()
+    {
+        if (Input.GetKeyDown(InputManager.instance.attackKey))
+        {
+            
+        }
+    }
     private void LateUpdate()
     {
         currentSpeed = rb.velocity;
@@ -146,8 +159,8 @@ public class PlayerController : MonoBehaviour
                     rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                     AudioManager.instance.PlaySFXAudio("Jump");
                     groundHoldJumpState = 1;
-                    groundHoldJumpTimer.ResetAndRun();
-                    jumpNoReponseTimer.ResetAndRun();
+                    groundHoldJumpTimer.ReRun();
+                    jumpNoReponseTimer.ReRun();
                 }
                 else if (nowairJumpCount > 0)//空中跳跃
                 {
@@ -192,6 +205,7 @@ public class PlayerController : MonoBehaviour
             isWallSliding = false;
             return;
         }
+        //在墙上且按下相反的方向键，触发wallslide
         if ((collDetection.OnLeftWall && Input.GetKey(InputManager.instance.leftKey)) ||
             (collDetection.OnRightWall && Input.GetKey(InputManager.instance.rightKey)))
         {
@@ -204,8 +218,9 @@ public class PlayerController : MonoBehaviour
             playerAnim.Flip(wallSlidefaceDir);
             rb.velocity = new Vector2(rb.velocity.x, wallSlideSpeed);
         }
+        //松开后如果贴着墙则仍保持一定时间的wallslide状态
         else {
-            wallSlideHoldTimer.ResetAndRun();
+            wallSlideHoldTimer.ReRun();
         };
         if (!collDetection.OnWall)
         {

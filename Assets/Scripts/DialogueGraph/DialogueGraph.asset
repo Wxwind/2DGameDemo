@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: 72}
+  position: {x: 440, y: -72}
   ports:
     keys:
     - end
@@ -113,7 +113,7 @@ MonoBehaviour:
   chats:
   - charactor: {fileID: 21300000, guid: 210552b9dac18be4597de021f79ee70b, type: 3}
     speaker: fire
-    content: 456
+    content: 4564324532523523523523523
 --- !u!114 &-3377132505113854009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   chats:
   - charactor: {fileID: 21300000, guid: 8c5e5033fe838ef40989eeb85a513b7f, type: 3}
     speaker: row
-    content: 123
+    content: 12312312412112112
   - charactor: {fileID: 21300000, guid: 469c459e72bc0de49851cf3e95bb383b, type: 3}
     speaker: block
     content: this is block

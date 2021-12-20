@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using System;
 using DialogueGraphEditor;
 using DG.Tweening;
+using Unity.Collections;
 
 public class Test : MonoBehaviour
 {

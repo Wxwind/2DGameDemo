@@ -31,7 +31,7 @@ public class FloatPlatform_R : MonoBehaviour
         if (Vector2.Distance(transform.position, pointsList[index].position) < 0.01f)
         {
             arrived = true;
-            timer.ResetAndRun();
+            timer.ReRun();
             index++;
             if (index >= pointsList.Count)
             {

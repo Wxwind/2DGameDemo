@@ -19,8 +19,7 @@ public class InputManager : MonoBehaviour
     [ReadOnly] public KeyCode abilityKey;
     [ReadOnly] public KeyCode jumpKey;
     [ReadOnly] public KeyCode dashKey;
-    [ReadOnly] public int xInput=0;
-    [ReadOnly] public int faceDir=1;
+
 
     private void Awake()
     {
@@ -40,10 +39,9 @@ public class InputManager : MonoBehaviour
         downKey = KeyCode.S;
         leftKey = KeyCode.A;
         rightKey = KeyCode.D;
-        //attackKey = KeyCode.K;
-        abilityKey = KeyCode.K;
+        attackKey = KeyCode.K;
+        abilityKey = KeyCode.L;
         jumpKey = KeyCode.J;
-        dashKey = KeyCode.L;
     }
     private void OnGUI()
     {

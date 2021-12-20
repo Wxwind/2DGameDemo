@@ -15,6 +15,7 @@ public class DialogueGraphManeger: MonoBehaviour
     
     public GameObject dialogUI;
     public GameObject option_pre;
+    public float txtSpeed;
     private RectTransform root;
     private Transform optionUI;
     
@@ -23,8 +24,10 @@ public class DialogueGraphManeger: MonoBehaviour
     private TMP_Text speaker;
     private Image characterImg;
     private Node curNode;
-    private bool isRunning;
+    private GameObject hint;
+    public bool isRunning;
     private bool isInOptionNode=false;
+    private Timer freezeTimer;
 
     private void Awake()
     {
@@ -40,10 +43,13 @@ public class DialogueGraphManeger: MonoBehaviour
         content = dialogUI.transform.Find("Panel/Chat/Content").GetComponent<TMP_Text>();
         speaker = dialogUI.transform.Find("Panel/Chat/Speaker").GetComponent<TMP_Text>();
         characterImg = dialogUI.transform.Find("Panel/Chat/Character").GetComponent<Image>();
+        hint=dialogUI.transform.Find("Panel/Hint").gameObject;
+        freezeTimer = new Timer(0, ()=>isRunning = true);
     }
 
     private void Update()
     {
+        freezeTimer.Tick(Time.deltaTime);
         if (!isRunning)
         {
             return;
@@ -51,6 +57,7 @@ public class DialogueGraphManeger: MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0))
         {
             ExecuteCurrentNode();
+            hint.SetActive(false);
         }
     }
 
@@ -71,6 +78,11 @@ public class DialogueGraphManeger: MonoBehaviour
         else curNode = startNodes[0];
         curNode = curNode.GetOutputPort("start")?.Connection.node;
         isRunning = true;
+        if (!dialogUI.activeSelf)
+        {
+           dialogUI.transform.localScale = new Vector3(1, 1, 1);
+           dialogUI.SetActive(true); 
+        }
         ExecuteCurrentNode();
     }
     
@@ -135,10 +147,11 @@ public class DialogueGraphManeger: MonoBehaviour
 
     private void PlayEndNode(EndNode node)
     {
-        Debug.Log("dialogue has done");
+        Debug.Log("对话播放完毕");
         isRunning = false;
         Tweener tween = root.DOScale(new Vector3(0, 0, 0), 1.0f);
         tween.SetEase(Ease.Linear);
+        tween.OnComplete(() => dialogUI.SetActive(false));
     }
 
     private void PlayChatNode(ChatNode node)
@@ -159,6 +172,15 @@ public class DialogueGraphManeger: MonoBehaviour
     {
         this.characterImg.sprite = character;
         this.speaker.text = speaker;
-        this.content.text = content;
+        float duration = content.Length / txtSpeed;
+        this.content.text = "";
+        this.content.DOText(content, duration).OnComplete(() =>
+        {
+            //this.content.text += "\n(点击以继续...)";
+            hint.SetActive(true);
+        });
+        isRunning = false;
+        freezeTimer.ResetTimerAndRun(duration);
     }
+    
 }

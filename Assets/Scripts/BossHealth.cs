@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DialogueGraphEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BossHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int maxHealth;
+    public BossBloodBar bossBloodBarCanvas;
+
+    private void Start()
     {
-        
+        bossBloodBarCanvas.SetBloodBar(1);
+        bossBloodBarCanvas.SetBloodBar(0.2f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetBloodUI(int health)
     {
-        
+        float percent = InverseLerp(health);
+        bossBloodBarCanvas.SetBloodBar(percent);
+    }
+
+    private float InverseLerp(int value)
+    {
+        return (float) value / maxHealth;
     }
 }

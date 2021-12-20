@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerController>().enabled = false;
         deathPrefab.SetActive(true);
         AudioManager.instance.PlaySFXAudio("Death");
-        menuTimer.ResetAndRun();
+        menuTimer.ReRun();
         sr.enabled = false;
     }
 }

@@ -46,3 +46,5 @@ MonoBehaviour:
   dialogUI: {fileID: 0}
   option_pre: {fileID: 2813053014198682674, guid: 0c707e3334b0bad4db6c57a81fd03eca,
     type: 3}
+  txtSpeed: 8
+  isRunning: 0
