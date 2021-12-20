@@ -36,9 +36,9 @@ public class InputManager : MonoBehaviour
 
     private void KeyInit()
     {
-        upKey = KeyCode.A;
+        upKey = KeyCode.W;
         downKey = KeyCode.S;
-        leftKey = KeyCode.Z;
+        leftKey = KeyCode.A;
         rightKey = KeyCode.D;
         //attackKey = KeyCode.K;
         abilityKey = KeyCode.K;
