@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public void DeleteSelf()
+    public GameObject restartMenu;
+    private float waitForMenuTime;
+    private Timer menuTimer;
+    // Start is called before the first frame update
+    private void Awake()
     {
-        Debug.Log("Player is dead");
-        Destroy(gameObject);       
+        waitForMenuTime = 2.0f;
+        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));    
+    }
+
+    private void Update()
+    {
+        menuTimer.Tick(Time.deltaTime);
+    }
+
+    private void Death()
+    {
+        menuTimer.ReRun();
     }
 }
 
