@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+    public GameObject bubbleBreakPre;
     private Timer lifeTimer;
-    private Action OnDestroy;
+    private Action OnDestroySelf;
     private LayerMask ground;
 
     private void Awake()
@@ -19,13 +20,10 @@ public class Bubble : MonoBehaviour
         lifeTimer.Tick(Time.deltaTime);
     }
 
-    public void Init(float lifetime,Action OnDestroy)
+    public void Init(float lifetime,Action action)
     {
-        lifeTimer = new Timer(lifetime, () => {
-            OnDestroy();
-            Destroy(gameObject);
-        });
-        this.OnDestroy = OnDestroy;
+        OnDestroySelf = action;
+        lifeTimer = new Timer(lifetime, Death);
         lifeTimer.Run();
     }
 
@@ -33,8 +31,15 @@ public class Bubble : MonoBehaviour
     {
         if (other.gameObject.layer==ground)
         {
-            OnDestroy();
-            Destroy(gameObject);
+            Death();
         }
+    }
+
+    private void Death()
+    {
+        OnDestroySelf();
+        var trans = transform;
+        Instantiate(bubbleBreakPre, trans.position, trans.rotation);
+        Destroy(gameObject);
     }
 }

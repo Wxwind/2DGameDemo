@@ -5,23 +5,18 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     public GameObject restartMenu;
-    private float waitForMenuTime;
+    public float waitForMenuTime;
     private Timer menuTimer;
     // Start is called before the first frame update
     private void Awake()
     {
-        waitForMenuTime = 2.0f;
-        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));    
+        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true),true);    
     }
 
     private void Update()
     {
         menuTimer.Tick(Time.deltaTime);
     }
-
-    private void Death()
-    {
-        menuTimer.ReRun();
-    }
+    
 }
 

@@ -12156,6 +12156,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartCurrentScene
       objectReference: {fileID: 0}
+    - target: {fileID: 1911458356076994830, guid: 36b01145a10fa804b871ad1e849022e0,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1911458356076994831, guid: 36b01145a10fa804b871ad1e849022e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12265,6 +12270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RestartMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911458356076994867, guid: 36b01145a10fa804b871ad1e849022e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b01145a10fa804b871ad1e849022e0, type: 3}
@@ -12809,11 +12819,6 @@ PrefabInstance:
       propertyPath: restartMenu
       value: 
       objectReference: {fileID: 1293095003}
-    - target: {fileID: 5044755381398776218, guid: 03871065affcc87469d548b7553ea467,
-        type: 3}
-      propertyPath: tpThreadTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5044755381398776221, guid: 03871065affcc87469d548b7553ea467,
         type: 3}
       propertyPath: m_LocalPosition.x

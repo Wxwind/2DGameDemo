@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6306918353199372656}
   - component: {fileID: 2858089120648998967}
   - component: {fileID: -2363283629163047945}
-  - component: {fileID: 3447504080814333456}
+  - component: {fileID: 4230968232787458657}
   m_Layer: 12
   m_Name: Bubble
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1975813915d21942a45904e1beae2a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c9b481279dbe254faba8a585c4c8885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,18 +134,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7ba78cc6493504eb7bfca5181e576f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &3447504080814333456
-Animation:
+  bubbleBreakPre: {fileID: 5637951401499748503, guid: 5656ec16f9d45c94d9aeecb1c5092d12,
+    type: 3}
+--- !u!95 &4230968232787458657
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6306918353199372657}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05dc646d059fb134088a3a8abb61bbdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
