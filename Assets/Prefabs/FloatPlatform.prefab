@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4489891430273526588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pos1
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4489891430305100964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pos0
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4489891430478991027}
   - component: {fileID: 1652490989}
   - component: {fileID: 1652490993}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +88,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4489891430478991024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.58, y: -1.96, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6616008778433819198}
   m_RootOrder: 0
@@ -130,11 +130,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -443935997
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4299379836027017241, guid: 9fe212942fe931b498c46d9803c29e81,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 469c459e72bc0de49851cf3e95bb383b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,10 +178,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 0f059b63f08405a4b82d41a249c50192, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1652490993
 BoxCollider2D:
@@ -197,18 +196,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.007571101, y: 0.007570982}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.4694021, y: 0.1369052}
   m_EdgeRadius: 0
 --- !u!1 &4489891430767911476
 GameObject:
@@ -220,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4489891430767911477}
   - component: {fileID: 4489891430767911478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FloatPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,6 +257,7 @@ MonoBehaviour:
   currentState: 0
   realityObject: {fileID: 5081858347733364250}
   fictionObject: {fileID: 4489891430778300601}
+  player: {fileID: 0}
 --- !u!1 &4489891430778300601
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 4489891430778300602}
   - component: {fileID: 4489891430778300603}
   - component: {fileID: 7855343147037218263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fictionObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 4489891430778300601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4489891430767911477}
   m_RootOrder: 1
@@ -326,12 +326,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -443935997
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2220758982292089259, guid: 9fe212942fe931b498c46d9803c29e81,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 469c459e72bc0de49851cf3e95bb383b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -363,7 +362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6616008778433819198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: realityObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

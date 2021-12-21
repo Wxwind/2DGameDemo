@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2706481297085863474}
   - component: {fileID: 8085501371824048724}
   - component: {fileID: 3271246176035865636}
+  - component: {fileID: 1349681901}
   m_Layer: 11
   m_Name: DeathPrefab
   m_TagString: Untagged
@@ -68,9 +69,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 789232101
+  m_SortingLayer: 3
+  m_SortingOrder: 200
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,6 +102,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1349681901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442438158606520936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02541b056a9bd0040986086f8d1d058c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5044755381398776223
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,11 +189,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 789232101
+  m_SortingLayer: 3
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 68580a27fbf8c3c47a7fe36d2800cd8d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -302,12 +315,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LRMoveSpeed: 5
   LRAirMoveSpeed: 3
-  jumpSpeed: 8
+  jumpSpeed: 5
   airJumpSpeed: 8
-  wallSlideSpeed: 0
+  wallSlideSpeed: -1
   wallSlideHoldTime: 1
   groundHoldJumpTime: 0.1
   jumpNoReponseTime: 0.05
+  bubblePre: {fileID: 6306918353199372657, guid: d7d87a66d3e8f6541b6a9ca16e1d73d9,
+    type: 3}
+  bubbleLifeTime: 3
+  bubbleSpeed: 3
   canJump: 1
   canMove: 1
   canAirJump: 1

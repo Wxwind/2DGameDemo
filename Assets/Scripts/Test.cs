@@ -21,6 +21,6 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
-        DialogueGraphManeger.instance.LoadDialogGraph(graph);
+        //DialogueGraphManeger.instance.LoadDialogGraph(graph);
     }
 }

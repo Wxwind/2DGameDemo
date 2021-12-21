@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Trap_Enemy"))
         {
             Death();          
         }
@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         GetComponent<PlayerController>().enabled = false;
         deathPrefab.SetActive(true);
-        AudioManager.instance.PlaySFXAudio("Death");
+        //AudioManager.instance.PlaySFXAudio("Death");
         menuTimer.ReRun();
         sr.enabled = false;
     }

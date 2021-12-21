@@ -24,10 +24,11 @@ public class BossBloodBar : MonoBehaviour
 
     private void Update()
     {
-        if (slowImg.fillAmount >= healthPercent)
+        if (slowImg.fillAmount > healthPercent)
         {
             slowImg.fillAmount -= fadeSpeed / 1000;
         }
+        else slowImg.fillAmount = healthPercent;
     }
 
 
