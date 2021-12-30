@@ -28,6 +28,9 @@ public class DialogueGraphManeger: MonoBehaviour
     public bool isRunning;
     private bool isInOptionNode=false;
     private Timer freezeTimer;
+    
+    private Action OnStart;
+    private Action OnEnd;
 
     private void Awake()
     {
@@ -61,7 +64,7 @@ public class DialogueGraphManeger: MonoBehaviour
         }
     }
 
-    public void LoadDialogGraph(DialogueGraph graph)
+    public void LoadDialogGraph(DialogueGraph graph,Action OnStart,Action OnEnd)
     {
         dialogueGraph = graph;
         var startNodes = dialogueGraph.nodes.FindAll((x) =>x.GetType()==typeof(StartNode));
@@ -83,6 +86,10 @@ public class DialogueGraphManeger: MonoBehaviour
            dialogUI.transform.localScale = new Vector3(1, 1, 1);
            dialogUI.SetActive(true); 
         }
+
+        this.OnStart = OnStart;
+        this.OnEnd = OnEnd;
+        OnStart();
         ExecuteCurrentNode();
     }
     
@@ -91,6 +98,7 @@ public class DialogueGraphManeger: MonoBehaviour
         if (curNode==null)
         {
             Debug.LogError("当前节点为空！");
+            isRunning = false;
             return;
         }
 
@@ -152,6 +160,7 @@ public class DialogueGraphManeger: MonoBehaviour
         Tweener tween = root.DOScale(new Vector3(0, 0, 0), 1.0f);
         tween.SetEase(Ease.Linear);
         tween.OnComplete(() => dialogUI.SetActive(false));
+        OnEnd();
     }
 
     private void PlayChatNode(ChatNode node)

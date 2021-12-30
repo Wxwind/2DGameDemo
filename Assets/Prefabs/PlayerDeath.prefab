@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6168735678429447742}
   - component: {fileID: 8718420748103532791}
   m_Layer: 11
-  m_Name: DeathPrefab
+  m_Name: PlayerDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,6 +114,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02541b056a9bd0040986086f8d1d058c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartMenu: {fileID: 1911458356076994867, guid: 36b01145a10fa804b871ad1e849022e0,
-    type: 3}
+  restartMenu: {fileID: 0}
   waitForMenuTime: 2

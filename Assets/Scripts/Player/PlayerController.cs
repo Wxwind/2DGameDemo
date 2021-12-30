@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Unity.Collections;
+using UnityEngine.PlayerLoop;
 
 // ReSharper disable All
 
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float bubbleLifeTime;
     public float bubbleSpeed;
 
+
     /// <summary>
     /// 0:发射就绪
     /// 1:已发射泡泡但不能传送
@@ -39,16 +44,16 @@ public class PlayerController : MonoBehaviour
     public int maxAirJumpCount = 0;
     public bool canWallSliding = true;
 
-    [Space] [Title("当前状态")] [LabelText("当前速度"), ReadOnly]
+    [Space] [Title("当前状态")] [LabelText("当前速度"), Sirenix.OdinInspector.ReadOnly]
     public Vector2 currentSpeed;
 
-    [ReadOnly] public bool isJumping;
-    [ReadOnly] public bool isIdling;
-    [ReadOnly] public bool isWalking;
-    [ReadOnly] public bool isWallSliding;
-    [ReadOnly] public int nowairJumpCount;
-    [ReadOnly] public int xInput = 0;
-    [ReadOnly] public int faceDir = 1;
+    [Sirenix.OdinInspector.ReadOnly] public bool isJumping;
+    [Sirenix.OdinInspector.ReadOnly] public bool isIdling;
+    [Sirenix.OdinInspector.ReadOnly] public bool isWalking;
+    [Sirenix.OdinInspector.ReadOnly] public bool isWallSliding;
+    [Sirenix.OdinInspector.ReadOnly] public int nowairJumpCount;
+    [Sirenix.OdinInspector.ReadOnly] public int xInput = 0;
+    [Sirenix.OdinInspector.ReadOnly] public int faceDir = 1;
 
     private int wallSlidefaceDir;
 
@@ -127,8 +132,6 @@ public class PlayerController : MonoBehaviour
                 case 0:
                     playerAnim.SetTrigger("Bubble", true);
                     bubble = Instantiate(bubblePre, transform.position, transform.localRotation).GetComponent<Bubble>();
-                    bubble.Init(bubbleLifeTime, () => bubbleState = 0);
-                    var bubblerb = bubble.GetComponent<Rigidbody2D>();
                     int x = 0;
                     int y = 0;
                     if (Input.GetKey(InputManager.instance.upKey)) y += 1;
@@ -142,8 +145,10 @@ public class PlayerController : MonoBehaviour
                         if (Input.GetKey(InputManager.instance.leftKey)) x -= 1;
                         if (Input.GetKey(InputManager.instance.rightKey)) x += 1;
                     }
-
-                    bubblerb.velocity = bubbleSpeed * new Vector2(x, y);
+                    var bubblerb = bubble.GetComponent<Rigidbody2D>();
+                    var dir = new Vector2(x, y);
+                    bubblerb.velocity = bubbleSpeed * dir.normalized;
+                    bubble.Init(bubbleLifeTime, dir,bubbleSpeed,() => bubbleState = 0);
                     bubblerb.gravityScale = 0;
                     bubbleState = 1;
                     bubbleTpThreadTimer.ReRun();
@@ -153,13 +158,34 @@ public class PlayerController : MonoBehaviour
                     break;
                 //已发射且能传送
                 case 2:
-                    gameObject.transform.position = bubble.transform.position;
-                    bubbleState = 0;
-                    Destroy(bubble.gameObject);
+                    if (TryTp())
+                    {
+                        bubbleState = 0; 
+                        Destroy(bubble.gameObject);
+                    }
                     break;
             }
         }
     }
+
+    private bool TryTp()
+    {
+        var plPos = transform.position;
+        var bbPos= bubble.transform.position;
+      
+        if (bubble.isBloacked())
+        {
+            Debug.Log("tp failed:sth. block");
+            return false;
+        }
+        else
+        {
+            Debug.Log("tp succeed");
+            transform.position = bbPos;
+            return true;
+        }
+    }
+    
 
     private void LateUpdate()
     {

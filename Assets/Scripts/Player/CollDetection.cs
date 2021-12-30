@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 public class CollDetection : MonoBehaviour
 {
-    [Tooltip("检测地面和墙壁")]
-    public LayerMask groundLayer;
+    private LayerMask groundLayer;
 
     [Header("碰撞盒偏移")]
     public Vector2 groundBoxOffset;
@@ -27,12 +27,17 @@ public class CollDetection : MonoBehaviour
     public bool OnLeftWall { get { return onLeftWall; } }
     public bool OnRightWall { get { return onRightWall; } }
 
+    private void Awake()
+    {
+        groundLayer = LayerMask.NameToLayer("Ground");
+    }
+
     private void Update()
     {
         Vector2 position = transform.position;
-        onGround = Physics2D.OverlapBox(position+ groundBoxOffset, groundBoxSize, 0, groundLayer);
-        onLeftWall = Physics2D.OverlapBox(position+ leftWallBoxOffset, lrWallBoxSize, 0, groundLayer);
-        onRightWall = Physics2D.OverlapBox(position+ rightWallBoxOffset, lrWallBoxSize, 0, groundLayer);
+        onGround = Physics2D.OverlapBox(position+ groundBoxOffset, groundBoxSize, 0, 1<<groundLayer);
+        onLeftWall = Physics2D.OverlapBox(position+ leftWallBoxOffset, lrWallBoxSize, 0, 1<<groundLayer);
+        onRightWall = Physics2D.OverlapBox(position+ rightWallBoxOffset, lrWallBoxSize, 0, 1<<groundLayer);
         onWall = OnLeftWall || OnRightWall;
     }
 

@@ -210,7 +210,7 @@ MonoBehaviour:
     type: 3}
   bubbleTpThresholdTime: 0
   bubbleLifeTime: 3
-  bubbleSpeed: 3
+  bubbleSpeed: 6
   canJump: 1
   canMove: 1
   canShot: 1
@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3d8ac1a79c5984a8262927ec703556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartMenu: {fileID: 0}
   deathPre: {fileID: 6285884053188251762, guid: 39c83faddc61bd14fa726e129bcd0c01,
     type: 3}
+  restartMenu: {fileID: 0}
+  waitForMenuTime: 2

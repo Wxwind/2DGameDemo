@@ -3,7 +3,10 @@ guid: 2f7ba78cc6493504eb7bfca5181e576f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bubbleBreakPre: {fileID: 5637951401499748503, guid: 5656ec16f9d45c94d9aeecb1c5092d12,
+      type: 3}
+  - redHintImg: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

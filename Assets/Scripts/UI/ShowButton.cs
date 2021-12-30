@@ -8,6 +8,7 @@ public class ShowButton : MonoBehaviour
     public GameObject newGameButton;
     public GameObject ResumeGameButton;
 
+    #region used only for button in mainMenu
     private void Start()
     {
         if (GameManager.instance.ExistSaveData())
@@ -36,4 +37,5 @@ public class ShowButton : MonoBehaviour
     {
         Application.Quit();
     }
+    #endregion
 }
