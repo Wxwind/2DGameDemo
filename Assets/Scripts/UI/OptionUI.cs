@@ -9,8 +9,8 @@ using TMPro;
 public class OptionUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
     public int id;
-    private Image clickImg;
-    private TMP_Text optionText;
+    public Image clickImg;
+    public TMP_Text optionText;
 
     private void Awake()
     {
