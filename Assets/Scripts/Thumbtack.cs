@@ -42,7 +42,7 @@ public class Thumbtack : MonoBehaviour
       if (other.gameObject.layer==groundLayer)
       {
          fadeTimer.Run();
-         
+         rb.velocity = Vector2.zero;
       }
    }
 }

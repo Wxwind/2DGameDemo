@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4230968232787458657}
   m_Layer: 12
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   bounceAnimTime: 0.5
   boxSize: {x: 1, y: 1}
   redHintImg: {fileID: 0}
+  attack: 10
 --- !u!95 &4230968232787458657
 Animator:
   serializedVersion: 3

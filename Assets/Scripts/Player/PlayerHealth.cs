@@ -13,7 +13,11 @@ public class PlayerHealth : MonoBehaviour
     {
         pc = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
-        menuTimer = new Timer(waitForMenuTime, () => restartMenu.SetActive(true));
+        menuTimer = new Timer(waitForMenuTime, () =>
+        {
+            restartMenu.SetActive(true);
+            Time.timeScale = 0;
+        });
     }
 
     private void Update()
@@ -37,6 +41,6 @@ public class PlayerHealth : MonoBehaviour
         deathPre.GetComponent<SpriteRenderer>().flipX = pc.faceDir == -1;
         GetComponent<SpriteRenderer>().enabled = false;
         pc.enabled = false;
-        //AudioManager.instance.PlaySFXAudio("Death");
+        AudioManager.instance.PlaySFXAudio("Death");
     }
 }

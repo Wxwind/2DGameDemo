@@ -31,7 +31,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         
         AudioMixerGroup[] groups = audioMixer.FindMatchingGroups("Master");
-        foreach (var a in groups) Debug.Log(a.name);
 
         SFXAudioPool = new AudioSourcePool(gameObject, groups[2]);
 

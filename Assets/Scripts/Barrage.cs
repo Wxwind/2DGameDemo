@@ -15,7 +15,6 @@ public class Barrage : MonoBehaviour
     public float intervalTime = 2f;
     public Transform pos1;
     public Transform pos2;
-    public DialogueGraph barrageDia;
     private Timer barrageTimer;
     private Timer intervalTimer;
     private bool isEmissing = true;

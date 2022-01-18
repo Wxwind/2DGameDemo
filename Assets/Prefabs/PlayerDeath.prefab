@@ -114,5 +114,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02541b056a9bd0040986086f8d1d058c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartMenu: {fileID: 0}
-  waitForMenuTime: 2

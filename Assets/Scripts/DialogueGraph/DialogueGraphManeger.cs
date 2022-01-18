@@ -25,12 +25,18 @@ public class DialogueGraphManeger: MonoBehaviour
     private Image characterImg;
     private Node curNode;
     private GameObject hint;
-    public bool isRunning;
+    private bool isRunning;
+    private bool isFinished=true;
     private bool isInOptionNode=false;
     private Timer freezeTimer;
     
     private Action OnStart;
     private Action OnEnd;
+    
+    //在对话运行的时候让主角不动
+    public GameObject player;
+    private PlayerController pc;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
@@ -48,6 +54,9 @@ public class DialogueGraphManeger: MonoBehaviour
         characterImg = dialogUI.transform.Find("Panel/Chat/Character").GetComponent<Image>();
         hint=dialogUI.transform.Find("Panel/Hint").gameObject;
         freezeTimer = new Timer(0, ()=>isRunning = true);
+        
+        pc = player.GetComponent<PlayerController>();
+        rb = player.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -64,8 +73,27 @@ public class DialogueGraphManeger: MonoBehaviour
         }
     }
 
+    public void ExecuteDialogGraph(DialogueGraph graph)
+    {
+        LoadDialogGraph(graph,() =>
+            {
+                pc.enabled = false;
+                rb.velocity = Vector2.zero;
+                pc.currentSpeed=Vector2.zero;
+                pc.isIdling = true;
+            },
+            () => { pc.enabled = true; });
+    
+    }
+    
+
     public void LoadDialogGraph(DialogueGraph graph,Action OnStart,Action OnEnd)
     {
+        if (!isFinished)
+        {
+            Debug.LogError("有对话正在运行，无法加载DialogGraph");
+            return;
+        }
         dialogueGraph = graph;
         var startNodes = dialogueGraph.nodes.FindAll((x) =>x.GetType()==typeof(StartNode));
         if (startNodes.Count==0)
@@ -78,9 +106,10 @@ public class DialogueGraphManeger: MonoBehaviour
             Debug.LogError("有多个开始节点！");
             return;
         }
-        else curNode = startNodes[0];
+        curNode = startNodes[0];
         curNode = curNode.GetOutputPort("start")?.Connection.node;
         isRunning = true;
+        isFinished = false;
         if (!dialogUI.activeSelf)
         {
            dialogUI.transform.localScale = new Vector3(1, 1, 1);
@@ -160,6 +189,7 @@ public class DialogueGraphManeger: MonoBehaviour
         Tweener tween = root.DOScale(new Vector3(0, 0, 0), 1.0f);
         tween.SetEase(Ease.Linear);
         tween.OnComplete(() => dialogUI.SetActive(false));
+        isFinished = true;
         OnEnd();
     }
 

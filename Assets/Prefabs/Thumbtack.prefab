@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3147153616868411288}
   - component: {fileID: 7024999877640916079}
   - component: {fileID: 5774099336350780788}
+  - component: {fileID: 6726554569201256814}
   m_Layer: 0
   m_Name: Thumbtack
   m_TagString: Trap_Enemy
@@ -114,9 +115,22 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.031242073}
   m_Size: {x: 0.14402413, y: 0.23711282}
   m_Direction: 0
+--- !u!114 &6726554569201256814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732659132766699217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a825b163e32234b81108b2b6d78ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 2

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Timeline;
 
 public class Bubble : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bubble : MonoBehaviour
     public float bounceAnimTime;
     public Vector2 boxSize;
     public Sprite redHintImg;
+    public int attack;
     private Vector2 direction;
     private float speed;
     private Timer lifeTimer;
@@ -77,6 +79,12 @@ public class Bubble : MonoBehaviour
             }
             direction = reflect;
             rb.velocity = speed * reflect;
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+           other.GetComponent<EnemyHealth>().Hurt(attack);
+           Break();
         }
     }
 

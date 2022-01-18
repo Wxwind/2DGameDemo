@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(wallSlidefaceDir * jumpSpeed, jumpSpeed); //待修改
                 StartCoroutine(StopMove(0.1f));
-                //AudioManager.instance.PlaySFXAudio("Jump");
+                AudioManager.instance.PlaySFXAudio("Jump");
                 isWallSliding = false;
             }
             else //正常跳跃
@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
                 if (collDetection.OnGround) //地面跳跃
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                    //AudioManager.instance.PlaySFXAudio("Jump");
+                    AudioManager.instance.PlaySFXAudio("Jump");
                     groundHoldJumpState = 1;
                     groundHoldJumpTimer.ReRun();
                     jumpNoReponseTimer.ReRun();
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
                 {
                     nowairJumpCount--;
                     rb.velocity = new Vector2(rb.velocity.x, airJumpSpeed);
-                    //AudioManager.instance.PlaySFXAudio("Jump");
+                    AudioManager.instance.PlaySFXAudio("Jump");
                 }
             }
         }
