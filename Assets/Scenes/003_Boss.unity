@@ -2994,7 +2994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b40041aa31eec342b6764ec0501d586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 10
   bossBloodBarCanvas: {fileID: 998295307}
   bossDeath: {fileID: 363176731}
   ClearUI: {fileID: 1272835836}

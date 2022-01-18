@@ -49,13 +49,5 @@ public class EnemyHealth : MonoBehaviour
     {
         return (float) value / maxHealth;
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Bubble"))
-        {
-            var attack = other.GetComponent<Bubble>().attack;
-            Hurt(attack);
-        }
-    }
+    
 }

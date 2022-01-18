@@ -40,12 +40,7 @@ public class DialogueGraphManeger: MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
+        
         instance = this;
         root = dialogUI.transform.Find("Panel").GetComponent<RectTransform>();
         optionUI=dialogUI.transform.Find("Panel/Option").GetComponent<Transform>();
