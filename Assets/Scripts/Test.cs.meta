@@ -3,7 +3,10 @@ guid: ded9e5caeb922ed4698deaeb4c4c6d6c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BeamPre: {fileID: 16380829431307862, guid: ea09cdaa75e22ad4792f03d8a594cf7a, type: 3}
+  - beam: {instanceID: 0}
+  - beamHint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

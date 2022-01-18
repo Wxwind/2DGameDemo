@@ -419,6 +419,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18c2cee55d15a344ba35c2969a786c72, type: 3}
+--- !u!114 &446816883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6905651399844363664, guid: a906f99914c15c44e82e4736f2fe043e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256624951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02160a9711b57244b8f7fcaf6d44483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &781090710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -746,6 +758,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911458355345652880, guid: 36b01145a10fa804b871ad1e849022e0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 446816883}
+    - target: {fileID: 1911458355345652880, guid: 36b01145a10fa804b871ad1e849022e0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartCurrentScene
       objectReference: {fileID: 0}
     - target: {fileID: 1911458356076994831, guid: 36b01145a10fa804b871ad1e849022e0,
         type: 3}
@@ -1109,6 +1131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 23.621944, y: 0.43107224}
   m_EdgeRadius: 0
+--- !u!114 &1406603155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 210351524550466550, guid: 4050b7832f4fa314f988813c3d966c13,
+    type: 3}
+  m_PrefabInstance: {fileID: 1219778323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917805724426eaa4f8015fbc3b87eb91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1491207458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491207458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.73, y: -0.55, z: -10}
+  m_LocalPosition: {x: -6.59, y: -1.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 96145133}
@@ -1217,6 +1251,16 @@ PrefabInstance:
     - target: {fileID: 1438708690, guid: 7c9a0dd9f9e9c194d8611b0bc66d43b3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239536723269262917, guid: 7c9a0dd9f9e9c194d8611b0bc66d43b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1406603155}
+    - target: {fileID: 7239536723269262917, guid: 7c9a0dd9f9e9c194d8611b0bc66d43b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 7239536724535883669, guid: 7c9a0dd9f9e9c194d8611b0bc66d43b3,
         type: 3}
@@ -1417,12 +1461,12 @@ PrefabInstance:
     - target: {fileID: 5044755381398776221, guid: 03871065affcc87469d548b7553ea467,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.73
+      value: -6.59
       objectReference: {fileID: 0}
     - target: {fileID: 5044755381398776221, guid: 03871065affcc87469d548b7553ea467,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 5044755381398776221, guid: 03871065affcc87469d548b7553ea467,
         type: 3}
@@ -1750,7 +1794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002428796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.431327, y: -0.15261, z: -10}
+  m_LocalPosition: {x: -2.4313269, y: -0.15260994, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1812,7 +1856,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Trap_Enemy"))
+        if (collision.CompareTag("Trap_Enemy")||collision.CompareTag("Enemy"))
         {
             Death();
         }

@@ -8,7 +8,16 @@ public class DoorHint : MonoBehaviour
 {
     public GameObject hintUI;
     public int nextScene;
+    private bool canIn;
     [TextArea] public string content;
+
+    private void Update()
+    {
+        if (canIn&&Input.GetKeyDown(InputManager.instance.interactKey))
+        {
+            GameManager.instance.LoadNewScene(nextScene);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,24 +25,14 @@ public class DoorHint : MonoBehaviour
         {
             hintUI.SetActive(true);
             hintUI.GetComponentInChildren<TMP_Text>().text = content;
-        }
-
-        if (Input.GetKeyDown(InputManager.instance.interactKey))
-        {
-            GameManager.instance.LoadNewScene(nextScene);
+            canIn = true;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (Input.GetKeyDown(InputManager.instance.interactKey))
-        {
-            GameManager.instance.LoadNewScene(nextScene);
-        }
-    }
+    
 
     private void OnTriggerExit2D(Collider2D other)
     {
         hintUI.SetActive(false);
+        canIn = false;
     }
 }

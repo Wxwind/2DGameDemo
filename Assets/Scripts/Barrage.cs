@@ -15,6 +15,7 @@ public class Barrage : MonoBehaviour
     public float intervalTime = 2f;
     public Transform pos1;
     public Transform pos2;
+    public GameObject player;
     private Timer barrageTimer;
     private Timer intervalTimer;
     private bool isEmissing = true;
@@ -39,11 +40,13 @@ public class Barrage : MonoBehaviour
 
             intervalTimer.Tick(Time.deltaTime);
         }
+
+        Vector2 p = player.transform.position;
     }
 
     private void Emit()
     {
-        float count = Random.Range(2, 6);
+        float count = Random.Range(6, 10);
         for (int i = 0; i < count; i++)
         {
             float speed = -Random.Range(minMaxSpeed.x, minMaxSpeed.y);

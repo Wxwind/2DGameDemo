@@ -12,11 +12,13 @@ public class BossSkill : MonoBehaviour
     /// </summary>
     public int state;
 
+    public GameObject beamPre;
     public Vector3 stateTwoPos;
     public Vector3 idlePos;
     public Timer stateLastTimer;
     public bool freezeStateMachine;
     public GameObject wood;
+    private int lastSkill=0;
 
 
     void Start()
@@ -41,7 +43,12 @@ public class BossSkill : MonoBehaviour
         switch (state)
         {
             case 0:
-                int a = Random.Range(1, 3);
+                int a;
+                if (lastSkill == 0)
+                {
+                    a = Random.Range(1, 3);
+                }
+                else a = 3 - lastSkill;
                 transform.DOMove(idlePos, 2.0f).OnComplete(() =>
                 {
                     state = a;
@@ -50,8 +57,10 @@ public class BossSkill : MonoBehaviour
                 freezeStateMachine = true;
                 break;
             case 1:
-                gameObject.AddComponent<EmitBeam>();
-                stateLastTimer.ResetTimerAndRun(5, () =>
+                lastSkill = 1;
+                var emitBeam = gameObject.AddComponent<EmitBeam>();
+                emitBeam.Init(2,1.5f,beamPre);
+                stateLastTimer.ResetTimerAndRun(2, () =>
                 {
                     state = 0;
                     freezeStateMachine = false;
@@ -59,6 +68,7 @@ public class BossSkill : MonoBehaviour
                 freezeStateMachine = true;
                 break;
             case 2:
+                lastSkill = 2;
                 transform.DOMove(stateTwoPos, 1.0f).OnComplete(() => wood.SetActive(true));
                 stateLastTimer.ResetTimerAndRun(8, () =>
                 {

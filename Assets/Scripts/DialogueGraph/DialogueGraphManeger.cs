@@ -31,8 +31,8 @@ public class DialogueGraphManeger: MonoBehaviour
     private Timer freezeTimer;
     
     private Action OnStart;
-    private Action OnEnd;
-    
+    public Action OnEnd;
+
     //在对话运行的时候让主角不动
     public GameObject player;
     private PlayerController pc;

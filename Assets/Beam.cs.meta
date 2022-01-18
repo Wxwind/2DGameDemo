@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: d6c38aec64035b34ebe448e002838e3b
+guid: 2453455ebcc34b146a573b2a0585d21c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - BeamPre: {fileID: 16380829431307862, guid: ea09cdaa75e22ad4792f03d8a594cf7a, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

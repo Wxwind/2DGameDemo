@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.Rendering;
 using XNode;
-using XNodeEditor;
 
 namespace DialogueGraphEditor
 {

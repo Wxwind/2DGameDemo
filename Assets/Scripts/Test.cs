@@ -17,26 +17,6 @@ public class Test : MonoBehaviour
     //public int m_int;
     //public string m_string = "abc";
     //[Button("按钮", 30)]
-    public DialogueGraph graph;
-    public GameObject p;
-    private PlayerController pc;
-    private Rigidbody2D rb;
+    public GameObject go;
 
-    private void Awake()
-    {
-        pc = p.GetComponent<PlayerController>();
-        rb = p.GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
-        DialogueGraphManeger.instance.LoadDialogGraph(graph,() =>
-            {
-                pc.enabled = false;
-                rb.velocity = Vector2.zero;
-                pc.currentSpeed=Vector2.zero;
-                pc.isIdling = true;
-            },
-            () => { pc.enabled = true; });
-    }
 }

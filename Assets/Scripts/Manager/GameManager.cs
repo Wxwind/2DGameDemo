@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         int nowscene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(nowscene);
+        Time.timeScale = 1;
     }
 
     public void CreateSaveData()
@@ -96,6 +97,12 @@ public class GameManager : MonoBehaviour
     {
         return File.Exists(savePath);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    
 }
 
 

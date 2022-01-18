@@ -153,7 +153,7 @@ MonoBehaviour:
   chats:
   - charactor: {fileID: 21300000, guid: 68580a27fbf8c3c47a7fe36d2800cd8d, type: 3}
     speaker: "\u5FC3"
-    content: "wsad:\u65B9\u5411\u952E/nj:\u8DF3\u8DC3 k:\u53D1\u5C04\u6CE1\u6CE1"
+    content: "wsad:\u65B9\u5411\u952E j:\u8DF3\u8DC3 k:\u53D1\u5C04\u6CE1\u6CE1"
   - charactor: {fileID: 21300000, guid: 68580a27fbf8c3c47a7fe36d2800cd8d, type: 3}
     speaker: "\u5FC3"
     content: "tip:\u518D\u6B21\u6309\u4E0Bk\u952E\u53EF\u4EE5\u4F20\u9001\u81F3\u6CE1\u6CE1\u7684\u4F4D\u7F6E"
