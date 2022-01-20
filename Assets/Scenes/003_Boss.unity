@@ -296,6 +296,11 @@ PrefabInstance:
       propertyPath: restartMenu
       value: 
       objectReference: {fileID: 1379852639}
+    - target: {fileID: 5044755381398776218, guid: 03871065affcc87469d548b7553ea467,
+        type: 3}
+      propertyPath: bubbleLifeTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5044755381398776221, guid: 03871065affcc87469d548b7553ea467,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -472,6 +477,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2815126438257556952, guid: f95fe8f5684cd734d83a6b3e119ea1f3,
+        type: 3}
+      propertyPath: fadeSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2815126438257556955, guid: f95fe8f5684cd734d83a6b3e119ea1f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1112,18 +1122,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a906f99914c15c44e82e4736f2fe043e, type: 3}
---- !u!114 &780551546 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6905651399844363664, guid: a906f99914c15c44e82e4736f2fe043e,
-    type: 3}
-  m_PrefabInstance: {fileID: 780551545}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02160a9711b57244b8f7fcaf6d44483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &869687530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4489891430767911477, guid: e764618ec017b5f4ba0a8dc20bd1bc06,
@@ -2513,7 +2511,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 780551546}
+      - m_Target: {fileID: 1050411115}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -2994,7 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b40041aa31eec342b6764ec0501d586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 150
   bossBloodBarCanvas: {fileID: 998295307}
   bossDeath: {fileID: 363176731}
   ClearUI: {fileID: 1272835836}
